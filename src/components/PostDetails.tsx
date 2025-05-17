@@ -25,9 +25,9 @@ export const PostDetails: React.FC<Props> = ({ activePost }) => {
       .finally(() => setIsLoadingComments(false));
   }, [activePost]);
 
-  const handleDeleteComment = (commentId: number) => {
+  const handleDeleteComment = async (commentId: number) => {
     try {
-      deleteComment(commentId);
+      await deleteComment(commentId);
     } catch (error) {
       setIsError(true);
       alert(error);

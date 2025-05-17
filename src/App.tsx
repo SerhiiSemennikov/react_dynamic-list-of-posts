@@ -34,7 +34,7 @@ export const App = () => {
   useEffect(() => {
     if (activeUser) {
       setIsLoading(true);
-      getPosts({ id: activeUser.id })
+      getPosts({ userId: activeUser.id })
         .then(setPosts)
         .catch(() => setIsError(true))
         .finally(() => setIsLoading(false));

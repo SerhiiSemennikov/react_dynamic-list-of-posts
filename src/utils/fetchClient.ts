@@ -48,19 +48,19 @@ export const getUsers = () => {
   return client.get<User[]>('/users');
 };
 
-export const getPosts = ({ id }: Pick<User, 'id'>) => {
-  return client.get<Post[]>(`/posts?userId=${id}`);
+export const getPosts = ({ userId }: { userId: number }) => {
+  return client.get<Post[]>(`/posts?userId=${userId}`);
 };
 
 export const getComments = (postId: number) => {
   return client.get<Comment[]>(`/comments?postId=${postId}`);
 };
 
-export const deleteComment = (commentId: number) => {
+export const deleteComment = async (commentId: number) => {
   try {
-    client.delete(`/comments/${commentId}`);
-  } catch (err: any) {
-    console.error('Can not delete the comment', err.message);
+    await client.delete(`/comments/${commentId}`);
+  } catch (error: any) {
+    console.error('Can not delete the comment', error.message);
   } // finally {
   //  return deleteComment;
   // }
