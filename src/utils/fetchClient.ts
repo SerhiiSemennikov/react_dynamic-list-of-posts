@@ -60,10 +60,11 @@ export const deleteComment = async (commentId: number) => {
   try {
     await client.delete(`/comments/${commentId}`);
   } catch (error: any) {
-    console.error('Can not delete the comment', error.message);
-  } // finally {
-  //  return deleteComment;
-  // }
+    alert(error.message);
+    throw error;
+  } finally {
+    return deleteComment;
+  }
 };
 
 export const addComment = ({
